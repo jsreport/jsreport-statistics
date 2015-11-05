@@ -1,0 +1,10 @@
+{
+  "extends": "semistandard",
+  "env": {
+      "node": true,
+      "mocha": true
+  },
+  "globals": {
+    "define": true
+  }
+}

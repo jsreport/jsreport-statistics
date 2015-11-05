@@ -1,0 +1,23 @@
+{
+  "name": "jsreport-statistics",
+  "version": "0.0.1",
+  "description": "jsreport extension which adds to studio history chart with amount of processed requests ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "jsreport",
+    "store"
+  ],
+  "license": "LGPL",
+  "dependencies": {},
+  "author": "Jan Blaha",
+  "devDependencies": {
+    "eslint": "^1.8.0",
+    "mocha": "^2.3.3",
+    "requirejs": "^2.1.20",
+    "semistandard": "^7.0.2",
+    "should": "^7.1.1"
+  }
+}

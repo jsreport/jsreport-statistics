@@ -1,4 +1,33 @@
-define(['marionette', 'underscore', 'jquery', 'core/view.base'], function (Marionette, _, $, ViewBase) {
+define('dashboard.statistics.model', ['app', 'backbone', 'core/basicModel'], function (app, Backbone, ModelBase) {
+  var ItemModel = Backbone.Model.extend({});
+
+  var CollectionModel = Backbone.Collection.extend({
+    url: function () {
+      var now = new Date();
+      now.setDate(now.getDate() - 7);
+      return "odata/statistics?$filter=fiveMinuteDate gt datetime'" + now.toISOString().replace('Z', '') + "'";
+    },
+
+    model: ItemModel
+  });
+
+  return ModelBase.extend({
+    initialize: function () {
+      this.items = new CollectionModel();
+      this.set('filter', 'Last hour');
+      var self = this;
+      this.listenTo(this.items, 'sync', function () {
+        self.trigger('sync');
+      });
+    },
+
+    fetch: function (options) {
+      this.items.fetch(options);
+    }
+  });
+});
+
+define('dashboard.statistics.view', ['marionette', 'underscore', 'jquery', 'core/view.base'], function (Marionette, _, $, ViewBase) {
   return ViewBase.extend({
     template: 'dashboard-statistics',
 
@@ -181,4 +210,18 @@ define(['marionette', 'underscore', 'jquery', 'core/view.base'], function (Mario
     }
   });
 });
+
+
+define('main_dev', ['app', 'marionette', 'backbone',
+    './dashboard.statistics.model', './dashboard.statistics.view'],
+  function (app, Marionette, Backbone, DashboardModel, DashboardView) {
+    app.on('dashboard-extensions-render', function (region) {
+      var model = new DashboardModel();
+      region.show(new DashboardView({
+        model: model
+      }), 'stats');
+      model.fetch();
+    });
+  });
+
 
