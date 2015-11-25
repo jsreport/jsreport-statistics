@@ -5,6 +5,11 @@
   "scripts": {
     "test": "mocha test && standard"
   },
+  "homepage": "https://github.com/jsreport/jsreport-statistics",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jsreport/jsreport-statistics.git"
+  },
   "standard": {
     "ignore": [
       "public/**"
@@ -22,7 +27,6 @@
   ],
   "license": "LGPL",
   "dependencies": {
-    "jsreport-core": "*"
   },
   "author": "Jan Blaha",
   "devDependencies": {
