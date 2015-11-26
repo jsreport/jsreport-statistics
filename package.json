@@ -1,6 +1,6 @@
 {
   "name": "jsreport-statistics",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "jsreport extension which adds to studio history chart with amount of processed requests",
   "scripts": {
     "test": "mocha test && standard"
